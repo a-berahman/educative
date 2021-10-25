@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: educative_app    
+    container_name: educative_app
+    restart: always
+    working_dir: /app
+    command: >
+      bash -c "./educative migrate -m /app && \
+               ./educative serve"
+    volumes:
+      - ./env.yaml:/app/env.yaml
+    ports:
+      - 1323
